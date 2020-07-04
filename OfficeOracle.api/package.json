@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+  	"express": "latest",
+  	"@sap/xssec": "latest",
+  	"@sap/xsenv": "latest",
+  	"@sap/textbundle": "latest",
+  	"@sap/logging": "latest",
+  	"@sap/hdbext": "latest"
+  },
+  "description": "my description",
+  "devDependencies": {
+    "jest": "^23.6.0",
+    "jest-junit": "^5.2.0"
+  },
+  "files": [],
+  "main": "server.js",
+  "name": "OfficeOracle.api",
+  "scripts": {
+    "test": "node node_modules/jest/bin/jest --config jest.json",
+    "test-coverage": "node node_modules/jest/bin/jest --coverage --config jest.json",
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": "8.x"
+  },
+  "version": "1.0.0"
+}

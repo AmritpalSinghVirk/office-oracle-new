@@ -1,0 +1,6 @@
+{
+  "xsappname": "IN2128-master",
+  "tenant-mode": "dedicated",
+  "description": "Security profile of called application",
+  "role-templates": []
+}

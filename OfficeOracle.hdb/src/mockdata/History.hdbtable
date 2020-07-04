@@ -1,0 +1,9 @@
+COLUMN TABLE "OfficeOracle.OfficeOracle.hdb.mockdata::History" ( 
+   "HID" INTEGER               COMMENT 'History Entrance ID',
+   "RID" INTEGER			   COMMENT 'Room ID',
+   "TIMESTAMP" TIMESTAMP	   COMMENT 'Time of observation',
+   "CAPACITY_OBSERVED" INTEGER COMMENT 'Capacity at time of observation',
+   "CAPACITY_MAX" INTEGER      COMMENT 'Maximum capacity of the room',
+   PRIMARY KEY ("HID") 
+)
+COMMENT 'Table with historical data concerning Room Occupancy Levels over time'

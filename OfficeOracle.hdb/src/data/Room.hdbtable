@@ -1,0 +1,8 @@
+COLUMN TABLE "OfficeOracle.OfficeOracle.hdb.data::Room" ( 
+   "RID" INTEGER             COMMENT 'Room ID',
+   "ROOMX" INTEGER           COMMENT 'Room Length, or X',
+   "ROOMY" INTEGER           COMMENT 'Room Width, or Y',
+   "CAPACITY_MAX" INTEGER    COMMENT 'Maximum capacity of the room',
+   PRIMARY KEY ("RID") 
+)
+COMMENT 'Table with Room related data'

@@ -1,0 +1,8 @@
+COLUMN TABLE "OfficeOracle.OfficeOracle.hdb.mockdata::Workplace" ( 
+   "WID" INTEGER               COMMENT 'Workplace ID',
+   "STREET" NVARCHAR(256)      COMMENT 'Worplace Address: Street Name and Number',
+   "CITY" NVARCHAR(256)        COMMENT 'Worplace Address: City',
+   "PCODE" NVARCHAR(256)       COMMENT 'Worplace Address: Postal Code',
+   PRIMARY KEY ("WID") 
+)
+COMMENT 'Table with Worplace related data'

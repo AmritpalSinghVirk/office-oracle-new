@@ -1,0 +1,118 @@
+/* Enter your custom styles here */
+.logo {
+	height: 2rem;
+	margin-left: 1.25rem !important;
+}
+
+.floorplan {
+    height: 35.25rem;
+    width: 100%;
+}
+
+.floorplan .sapMFlexItem {
+    padding: 0 1rem 1rem 1rem !important;
+}
+
+.dashboardPage {
+	height: calc(100% - 3rem);
+}
+
+.dashboardMenuContainer .sapMFlexItem {
+	width: 100%;
+	padding-left: 2rem;
+	padding-right: 2rem;
+}
+
+.container {
+	padding-bottom: 3rem;
+}
+
+.realTimeOccupancyCard {
+	width: calc(100% - 2rem) !important;
+}
+
+.realTimeOccupancyCard .sapMVBox .sapMFlexItem:last-child {
+	text-align: center;
+}
+
+.realTimeOccupancyCounter {
+	font-size: 66px;
+}
+
+.timestampCard {
+	width: calc(100% - 2rem) !important;
+}
+
+.timestampTitle {
+	margin-bottom: 0.3rem;
+}
+
+.timestampValue {
+	font-size: 17px;
+    font-weight: 600;
+}
+
+.occupancyCard {
+	min-height: 255px !important;
+	width: calc(100% - 2rem) !important;
+}
+
+.occupancyCard .sapMListItems {
+	height: 21.75rem;
+    overflow-y: scroll;
+}
+
+.listItem {
+	border-bottom: 1px solid #d9d9d9;
+}
+
+.mainChartContainer .sapMFlexItem {
+	padding: 0 1.8rem 1rem 1rem;
+}
+
+.analyticsHistoryCahrtContainer > .sapMFlexItem {
+	padding: 0 1.9rem 1rem 0.6rem;
+    height: 50%;
+}
+
+.popularOfficeTimeCard .popularOfficeTimeVizFrame {
+	width: 100%;
+}
+
+.floorPlanCard {
+	padding: 1rem;
+}
+
+.heatMapCard {
+	padding: 1rem;
+}
+
+.sideContainer > .sapMFlexItem {
+	padding: 0 0.5rem 1rem 2rem;
+}
+
+.rankingListCard {
+	min-height: 255px !important;
+}
+
+.rankingListCard .sapMListItems {
+	height: 19.265rem;
+    overflow-y: scroll;
+}
+
+.popularOfficeTmeTitle {
+ 	padding: 1rem;
+    width: 50%;
+ }
+ 
+ .popularRoomTimeVizFrame {
+ 	width: 100%;
+ }
+ 
+.weekDaysSelectorContainer {
+	padding: 1rem;
+    width: 50%;
+    display: flex;
+    flex-direction: row-reverse;
+}
+ 

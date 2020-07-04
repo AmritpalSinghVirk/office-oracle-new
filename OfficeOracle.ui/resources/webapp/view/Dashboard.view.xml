@@ -1,0 +1,210 @@
+<mvc:View controllerName="OfficeOracle.ui.OfficeOracle.ui.controller.Dashboard" xmlns:f="sap.f" xmlns:viz="sap.viz.ui5.controls"
+	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds" xmlns:viz.data="sap.viz.ui5.data" xmlns:card="sap.f.cards" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core" displayBlock="true" xmlns="sap.m" xmlns:layout="sap.ui.layout">
+	<core:Fragment fragmentName="OfficeOracle.ui.OfficeOracle.ui.view.fragments.Header" id="idHeader" type="XML"/>
+	<App id="app">
+		<pages>
+			<Page showHeader="false">
+				<content>
+					<FlexBox class="dashboardMenuContainer" height="80px" width="100%" alignItems="Center" justifyContent="Center">
+						<items>
+							<SegmentedButton width="100%" selectedKey="{Dashboard>/SelectedMenu}">
+								<items>
+									<SegmentedButtonItem text="Main Dashboard" key="mainDashboard"/>
+									<SegmentedButtonItem text="Analytics &amp; History" key="analyticsAndHistory"/>
+									<SegmentedButtonItem text="Planned Presence Registration" key="PresencePlannedRegistration"/>
+								</items>
+							</SegmentedButton>
+						</items>
+					</FlexBox>
+					<HBox width="100%" class="container" visible="{=${Dashboard>/SelectedMenu} === 'mainDashboard'}">
+						<VBox width="26.3%">
+							<f:Card class="sapUiSmallMarginBottom sapUiMediumMarginBegin sapUiMediumMarginEnd realTimeOccupancyCard" height="120px">
+								<f:content>
+									<VBox class="sapUiSmallMargin" width="100%">
+										<Title level="H3" text="Real-time occupancy (sum)"/>
+										<Text class="realTimeOccupancyCounter" text="{Dashboard>/TotalOccupancy}"/>
+									</VBox>
+								</f:content>
+							</f:Card>
+							<f:Card class="sapUiSmallMarginBottom sapUiMediumMarginBegin sapUiMediumMarginEnd timestampCard" height="80px">
+								<f:content>
+									<VBox class="sapUiSmallMargin" width="100%">
+										<Title class="timestampTitle" level="H3" text="Timestamp"/>
+										<Text class="timestampValue" text="{Dashboard>/CurrentTimestamp}"/>
+									</VBox>
+								</f:content>
+							</f:Card>
+							<f:Card class="sapUiSmallMarginBottom sapUiMediumMarginBegin sapUiMediumMarginEnd occupancyCard">
+								<f:header>
+									<card:Header title="Overview of occupancy" subtitle="Per Room" statusText="Total({=${Dashboard>/OverviewRoomOccupancy}.length})"/>
+								</f:header>
+								<f:content>
+									<List class="itemContainer" showSeparators="None" items="{ path: 'Dashboard>/OverviewRoomOccupancy' }">
+										<CustomListItem>
+											<HBox class="listItem" alignItems="Center" justifyContent="SpaceBetween">
+												<VBox width="100%" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTopBottom">
+													<HBox justifyContent="SpaceBetween" width="100%">
+														<Title level="H3" text="Room {Dashboard>roomInfo/RID}"/>
+														<Text text="{Dashboard>totalOccupants}/{Dashboard>roomInfo/CAPACITY_MAX}"/>
+													</HBox>
+													<ProgressIndicator class="sapUiSmallMarginBottom" percentValue="{Dashboard>occupancyPercentage}"
+														displayValue="{Dashboard>occupancyPercentage}%" showValue="true" state="{=${Dashboard>occupancyPercentage} > 100 ? 'Error': 'Information'}"/>
+												</VBox>
+											</HBox>
+										</CustomListItem>
+									</List>
+								</f:content>
+							</f:Card>
+						</VBox>
+						<VBox width="73.4%" class="mainChartContainer">
+							<f:Card class="floorPlanCard" width="100%" height="100%">
+								<f:content>
+									<VBox width="100%">
+										<Title level="H3" text="Floor plan"/>
+										<Image src="images/Office_floor_plan1.png" class= "floorplan"/>
+									</VBox>
+								</f:content>
+							</f:Card>
+						</VBox>
+					</HBox>
+					<HBox class="container" width="100%" visible="{=${Dashboard>/SelectedMenu} === 'analyticsAndHistory'}">
+						<VBox width="30%" class="sideContainer">
+							<f:Card class="rankingListCard" width="100%">
+								<f:header>
+									<card:Header title="Ranking list of most occupied rooms" subtitle="Most occupied rooms in average"
+										statusText="Total({=${Dashboard>/MostOccupiedRooms}.length})"/>
+								</f:header>
+								<f:content>
+									<List class="itemContainer" showSeparators="None" items="{ path:'Dashboard>/MostOccupiedRooms' }">
+										<CustomListItem>
+											<HBox class="listItem" alignItems="Center" justifyContent="SpaceBetween">
+												<VBox width="100%" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTopBottom">
+													<HBox justifyContent="SpaceBetween" width="100%">
+														<Title level="H3" text="Room {Dashboard>RID}"/>
+													</HBox>
+													<HBox justifyContent="SpaceBetween" width="100%">
+														<Text text="Average Occupancy"/>
+														<Text text="{Dashboard>OCCUPANCY_AVG}%"/>
+													</HBox>
+												</VBox>
+											</HBox>
+										</CustomListItem>
+									</List>
+								</f:content>
+							</f:Card>
+							<f:Card class="rankingListCard" width="100%">
+								<f:header>
+									<card:Header title="Voilations against guidelines" subtitle="Exceedance of maximum occupancy per room"
+										statusText="Total({=${Dashboard>/TotalViolationsHistory}.length})"/>
+								</f:header>
+								<f:content>
+									<List class="itemContainer" showSeparators="None" items="{ path: 'Dashboard>/TotalViolationsHistory' }">
+										<CustomListItem>
+											<HBox class="listItem" alignItems="Center" justifyContent="SpaceBetween">
+												<VBox width="100%" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTopBottom">
+													<HBox justifyContent="SpaceBetween" width="100%">
+														<Title level="H3" text="Room {Dashboard>RID}"/>
+													</HBox>
+													<HBox justifyContent="SpaceBetween" width="100%">
+														<Text text="{Dashboard>TIMESTAMP}"/>
+														<ObjectStatus text="{Dashboard>CAPACITY_OBSERVED}/{Dashboard>CAPACITY_MAX}" state="Error"/>
+													</HBox>
+												</VBox>
+											</HBox>
+										</CustomListItem>
+									</List>
+								</f:content>
+							</f:Card>
+						</VBox>
+						<VBox width="70%" class="analyticsHistoryCahrtContainer">
+							<f:Card class="popularOfficeTimeCard" width="100%" height="100%">
+								<f:content>
+									<layout:FixFlex class="popularOfficeTimeVizFrame" minFlexSize="250">
+										<layout:fixContent>
+											<HBox width="100%">
+												<VBox class="popularOfficeTmeTitle">
+													<Title level="H3" text="Popular Times Total Office"/>
+													<Text text="Max number of employees allowed in total office: {Dashboard>/PopularOfficeTotalTime/OfficeMaxAllowedEmployees}"/>
+												</VBox>
+												<VBox class="weekDaysSelectorContainer">
+							                        <Select selectedKey='{Lookup>/SelectedDayKey}' maxWidth="200px" change='onDayChanged' 
+							                            items="{path: 'Lookup>/WeekDays'}">
+							                            <items>
+							                                <core:Item text="{Lookup>Value}" key="{Lookup>Key}" />
+							                            </items>
+							                        </Select>
+												</VBox>
+											</HBox>
+										</layout:fixContent>
+										<layout:flexContent>
+											<viz:VizFrame id="idPopularOfficeTimeVizFrame" uiConfig="{applicationSet:'fiori'}" legendVisible="false" height='100%' width="100%" vizType='column'>
+												<viz:dataset>
+													<viz.data:FlattenedDataset data="{Dashboard>/PopularOfficeTotalTime/Dataset}">
+														<viz.data:dimensions>
+															<viz.data:DimensionDefinition name="Hour" value="{Dashboard>TIME_SLOT}"/>
+														</viz.data:dimensions>
+														<viz.data:measures>
+															<viz.data:MeasureDefinition name="Occupancy in %" value="{Dashboard>OCCUPANCY_AVG}"/>
+														</viz.data:measures>
+													</viz.data:FlattenedDataset>
+												</viz:dataset>
+												<viz:feeds>
+													<viz.feeds:FeedItem id='valueAxisFeed' uid="valueAxis" type="Measure" values="Occupancy in %"/>
+													<viz.feeds:FeedItem id='categoryAxisFeed' uid="categoryAxis" type="Dimension" values="Hour"/>
+												</viz:feeds>
+											</viz:VizFrame>
+										</layout:flexContent>
+									</layout:FixFlex>
+								</f:content>
+							</f:Card>
+							<f:Card class="popularRoomTimeCard" width="100%" height="100%">
+								<f:content>
+									<layout:FixFlex class="popularRoomTimeVizFrame" minFlexSize="250">
+										<layout:fixContent>
+											<HBox width="100%">
+												<VBox class="popularOfficeTmeTitle">
+													<Title level="H3" text="Popular Times Per Room"/>
+													<Text text="Max number of employees allowed in Room 1: {Dashboard>/PopularTimePerRoom/RoomMaxAllowedEmployees}"/>
+												</VBox>
+												<VBox class="weekDaysSelectorContainer">
+							                        <Select selectedKey='{Lookup>/SelectedRoomKey}' maxWidth="200px" change='onRoomChanged' 
+							                            items="{path: 'Lookup>/Rooms'}">
+							                            <items>
+							                                <core:Item text="Room {Lookup>RID}" key="{Lookup>RID}" />
+							                            </items>
+							                        </Select>
+												</VBox>
+											</HBox>
+										</layout:fixContent>
+										<layout:flexContent>
+											<viz:VizFrame id="idPopularTimePerRoomVizFrame" uiConfig="{applicationSet:'fiori'}" legendVisible="false" height='100%' width="100%" vizType='column'>
+												<viz:dataset>
+													<viz.data:FlattenedDataset data="{Dashboard>/PopularTimePerRoom/Dataset}">
+														<viz.data:dimensions>
+															<viz.data:DimensionDefinition name="Time" value="{Dashboard>FORMATTED_TIMESTAMP}" dataType="date"/>
+														</viz.data:dimensions>
+														<viz.data:measures>
+															<viz.data:MeasureDefinition name="Occupancy in %" value="{Dashboard>OCCUPANCY_AVG}"/>
+														</viz.data:measures>
+													</viz.data:FlattenedDataset>
+												</viz:dataset>
+												<viz:feeds>
+													<viz.feeds:FeedItem id='valueAxisFeed2' uid="valueAxis" type="Measure" values="Occupancy in %"/>
+													<viz.feeds:FeedItem id='categoryAxisFeed2' uid="categoryAxis" type="Dimension" values="Time"/>
+												</viz:feeds>
+											</viz:VizFrame>
+										</layout:flexContent>
+									</layout:FixFlex>
+								</f:content>
+							</f:Card>
+						</VBox>
+					</HBox>
+					<HBox width="100%" visible="{=${Dashboard>/SelectedMenu} === 'PresencePlannedRegistration'}">
+						<Text text="Planned Presence Registration"/>
+					</HBox>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

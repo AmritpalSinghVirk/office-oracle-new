@@ -1,0 +1,57 @@
+ID: OfficeOracle
+_schema-version: '2.1'
+description: 'Solution for tracking, forecasting and visualizing workspace occupancy'
+version: 0.0.1
+modules:
+  - name: OfficeOracle.js
+    type: nodejs
+    path: OfficeOracle.js
+    provides:
+      - name: OfficeOracle.js_api
+        properties:
+          url: '${default-url}'
+          UPSTREAM_LINK: 'http://registry.npmjs.org'
+          SAPUPSTREAM_LINK: 'https://npm.sap.com'
+    requires:
+      - name: uaa-service
+      - name: hdi_OfficeOracle.hdb
+      - name: OfficeOracle.hdb
+  - name: OfficeOracle.ui
+    type: html5
+    path: OfficeOracle.ui
+    requires:
+      - name: uaa-service
+      - name: OfficeOracle.js_api
+        group: destinations
+        properties:
+          name: OfficeOracle.js_api
+          url: '~{url}'
+          forwardAuthToken: true
+  - name: OfficeOracle.hdb
+    type: hdb
+    path: OfficeOracle.hdb
+    requires:
+      - name: hdi_OfficeOracle.hdb
+  - name: OfficeOracle.api
+    type: nodejs
+    path: OfficeOracle.api
+    provides:
+      - name: OfficeOracle.api_api
+        properties:
+          url: '${default-url}'
+          UPSTREAM_LINK: 'http://registry.npmjs.org'
+          SAPUPSTREAM_LINK: 'https://npm.sap.com'
+    requires:
+      - name: hdi_OfficeOracle.hdb
+        group: hana
+      - name: uaa-service
+      - name: OfficeOracle.hdb
+resources:
+  - name: hdi_OfficeOracle.hdb
+    properties:
+      hdi-container-name: '${service-name}'
+    type: com.sap.xs.hdi-container
+  - name: uaa-service
+    type: com.sap.xs.uaa-space
+    parameters:
+      path: ./xs-security.json

@@ -1,0 +1,140 @@
+{
+	"format_version": 1,
+	"imports": [{
+		"target_table": "OfficeOracle.OfficeOracle.hdb.mockdata::Workplace",
+		"source_data": {
+			"data_type": "CSV",
+			"file_name": "OfficeOracle.OfficeOracle.hdb.mockdata::workplace.csv",
+			"has_header": false,
+			"dialect": "HANA",
+			"type_config": {
+				"delimiter": ","
+			}
+		},
+		"import_settings": {
+         	"include_filter" : [ ],		
+			"import_columns": [
+			"WID",
+			"STREET",
+			"CITY",
+			"PCODE"
+			]
+		},
+		"column_mappings": {
+			"WID": 1,
+			"STREET": 2,
+			"CITY": 3,
+			"PCODE": 4
+		}
+	},
+	{
+		"target_table": "OfficeOracle.OfficeOracle.hdb.mockdata::Floor",
+		"source_data": {
+			"data_type": "CSV",
+			"file_name": "OfficeOracle.OfficeOracle.hdb.mockdata::floor.csv",
+			"has_header": false,
+			"dialect": "HANA",
+			"type_config": {
+				"delimiter": ","
+			}
+		},
+		"import_settings": {
+         	"include_filter" : [ ],		
+			"import_columns": [
+			"FID",
+			"DESC",
+			"WID"
+			]
+		},
+		"column_mappings": {
+			"FID": 1,
+			"DESC": 2,
+			"WID": 3
+		}
+	},
+	{
+		"target_table": "OfficeOracle.OfficeOracle.hdb.mockdata::Room",
+		"source_data": {
+			"data_type": "CSV",
+			"file_name": "OfficeOracle.OfficeOracle.hdb.mockdata::room.csv",
+			"has_header": false,
+			"dialect": "HANA",
+			"type_config": {
+				"delimiter": ","
+			}
+		},
+		"import_settings": {
+         	"include_filter" : [ ],		
+			"import_columns": [
+			"RID",
+			"ROOMX",
+			"ROOMY",
+			"CAPACITY_MAX",
+			"FID"
+			]
+		},
+		"column_mappings": {
+			"RID": 1,
+			"ROOMX": 2,
+			"ROOMY": 3,
+			"CAPACITY_MAX": 4,
+			"FID": 5
+		}
+	},
+	{
+		"target_table": "OfficeOracle.OfficeOracle.hdb.mockdata::Occupant",
+		"source_data": {
+			"data_type": "CSV",
+			"file_name": "OfficeOracle.OfficeOracle.hdb.mockdata::occupant.csv",
+			"has_header": false,
+			"dialect": "HANA",
+			"type_config": {
+				"delimiter": ","
+			}
+		},
+		"import_settings": {
+         	"include_filter" : [ ],		
+			"import_columns": [
+			"OID",
+			"POSX",
+			"POSY",
+			"RID"
+			]
+		},
+		"column_mappings": {
+			"OID": 1,
+			"POSX": 3,
+			"POSY": 4,
+			"RID": 5
+		}
+	},
+	{
+		"target_table": "OfficeOracle.OfficeOracle.hdb.mockdata::History",
+		"source_data": {
+			"data_type": "CSV",
+			"file_name": "OfficeOracle.OfficeOracle.hdb.mockdata::history.csv",
+			"has_header": false,
+			"dialect": "HANA",
+			"type_config": {
+				"delimiter": ","
+			}
+		},
+		"import_settings": {
+         	"include_filter" : [ ],		
+			"import_columns": [
+			"HID",
+			"RID",
+			"TIMESTAMP",
+			"CAPACITY_OBSERVED",
+			"CAPACITY_MAX"
+			]
+		},
+		"column_mappings": {
+			"HID": 1,
+			"RID": 2,
+			"TIMESTAMP": 3,
+			"CAPACITY_OBSERVED": 4,
+			"CAPACITY_MAX": 5
+		}
+	}]
+}

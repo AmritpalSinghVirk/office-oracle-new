@@ -1,0 +1,7 @@
+COLUMN TABLE "OfficeOracle.OfficeOracle.hdb.mockdata::Floor" ( 
+   "FID" INTEGER               COMMENT 'Floor ID',
+   "DESC" NVARCHAR(256)        COMMENT 'Floor Description',
+   "WID" INTEGER    		   COMMENT 'Correlating Workplace',
+   PRIMARY KEY ("FID") 
+)
+COMMENT 'Table with Floor related data'

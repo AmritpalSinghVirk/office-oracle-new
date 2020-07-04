@@ -1,0 +1,10 @@
+COLUMN TABLE "OfficeOracle.OfficeOracle.hdb.data::Observation" ( 
+   "OBID" INTEGER           COMMENT 'Observation ID',
+   "TIMESTAMP" TIMESTAMP 	COMMENT 'Time of observation',
+   "RID" INTEGER    		COMMENT 'Correlating Room at observation',
+   "OID" INTEGER			COMMENT 'Occupant ID',
+   "POSX" INTEGER           COMMENT 'Occupant X Position at observation',
+   "POSY" INTEGER           COMMENT 'Occupant Y Position at observation',
+   PRIMARY KEY ("OBID") 
+)
+COMMENT 'Table with all observations made'

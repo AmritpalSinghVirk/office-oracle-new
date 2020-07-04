@@ -1,0 +1,9 @@
+COLUMN TABLE "OfficeOracle.OfficeOracle.hdb.mockdata::Occupant" ( 
+   "OID" INTEGER            COMMENT 'Occupant ID',
+   "TIMESTAMP" TIMESTAMP DEFAULT CURRENT_TIMESTAMP	COMMENT 'Time of observation',
+   "POSX" INTEGER           COMMENT 'Occupant X Position at observation',
+   "POSY" INTEGER           COMMENT 'Occupant Y Position at observation',
+   "RID" INTEGER    		COMMENT 'Correlating Room at observation',
+   PRIMARY KEY ("OID") 
+)
+COMMENT 'Table with Occupant related data'
